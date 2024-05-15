@@ -1,0 +1,75 @@
+<div class="row mt-3"  >
+    <div class="col-6 m-auto">
+    <div class="card m-auto">
+      <div class="card-header">
+        <h3>Register</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()">
+          <div class="form-group col-12">
+              <label for="name" class="form-label">fullName</label>
+              <input type="text" class="form-control"
+              formControlName="fullName" [ngClass]="{ 'is-valid': fullName.valid && fullName.touched }"
+              >
+              <!-- <span *ngIf="!fullName.valid && (fullName.touched || userSubmitted)"
+              class="error-block">
+                Please provide your fullName
+              </span> -->
+
+              <span *ngIf="fullName.hasError('minlength') && (fullName.touched || userSubmitted)"
+              class="error-block">
+            Full Name must be at least 5 characters long
+        </span>
+          </div>
+         
+    
+  
+          <div class="form-group col-12">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-valid': email.valid && email.touched }">
+            <span *ngIf="!email.valid && (email.touched || userSubmitted)" class="error-block">
+                <span *ngIf="email.hasError('required')">
+                    Please provide email id
+                </span>
+                <span *ngIf="email.hasError('email')">
+                  Please provide valid email id
+                </span>
+              </span>
+          </div>
+  
+          <div class="form-group col-12">
+            <label for="passwrod" class="form-label">Password</label>
+            <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-valid': password.valid && password.touched }">
+            <span *ngIf="!password.valid && (password.touched || userSubmitted)" class="error-block">
+                <span *ngIf="password.hasError('required')">
+                  Please provide password
+                </span>
+                <span *ngIf="password.hasError('pattern')">
+                    Password should be at least 8 characters long and contain letters, numbers, and at least one of $#
+                </span>
+              </span>
+          </div>
+
+          <div class="form-group col-12">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" formControlName="confirmPassword"  [ngClass]="{
+                'is-invalid': confirmPassword.touched && registerationForm.hasError('mismatch'),
+                'is-valid': confirmPassword.valid && registerationForm.hasError('mismatch') !== true
+             }">
+            <div *ngIf="confirmPassword.touched && registerationForm.hasError('mismatch')" class="invalid-feedback">
+              Passwords do not match
+            </div>
+          </div>
+          
+         
+          
+  
+          <div class="form-group col-12">
+            <button type="submit" class="btn btn-primary" [disabled]="!registerationForm.valid">Save</button>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+  </div>
