@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
       this.authService.signUp(this.registerationForm.value).subscribe(
         res=>{
          this.alertify.success("User Registred");
-         this.Route.navigate(['/login'])
+      
         },err=>{
           this.alertify.error(err?.error.message);
         }

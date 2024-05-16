@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertifyServiceService } from '../../services/alertify-service.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +11,7 @@ import { AlertifyServiceService } from '../../services/alertify-service.service'
 export class NavbarComponent {
   loggedinUser!: string;
 
-  constructor(private alertify: AlertifyServiceService) {
+  constructor(private alertify: AlertifyServiceService, private authservice: AuthService, private router: Router) {
    
   
   }
@@ -25,6 +27,9 @@ export class NavbarComponent {
   }
   onLogout() {
     localStorage.removeItem('user');
+    this.authservice.updateLoggedInState(false);
+
     this.alertify.success('You are logged out !');
+    this.router.navigate(['/login']);
   }
 }

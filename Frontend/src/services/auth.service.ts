@@ -1,7 +1,7 @@
 import { HttpClient ,HttpHeaders,HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 export class AuthService {
 
   private baseUrl:string="http://localhost:5197/api/Account/"
+  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor( private http:HttpClient) {
    }
 
@@ -16,6 +17,13 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}Register`, userobj)
    }
 
+   isLoggedIn(): BehaviorSubject<boolean> {
+    return this.loggedIn;
+  }
+  
+  updateLoggedInState(status: boolean) {
+    this.loggedIn.next(status);
+  }
    signin(userobj:any){
     return this.http.post<any>(`${this.baseUrl}Login`, userobj).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -27,4 +35,22 @@ export class AuthService {
       })
     )
    }
+
+
+   resetpassword(email: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}forgot-password`,  email,{responseType:"text" as any} )
+    .pipe( 
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error.error);
+      })
+    );
+  }
+
+  verifyEmailForPasswordReset(userId: string, token: string) {
+    let head_obj=new HttpHeaders().set("Authorization","bearer " +token);
+    return this.http.get(`${this.baseUrl}confirm-passwordreset?userId=${userId}&token=${token}`,{headers: head_obj,responseType:"text" as any});
+  }
+  
 }
+
+

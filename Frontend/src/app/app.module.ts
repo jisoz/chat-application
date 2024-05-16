@@ -14,11 +14,33 @@ import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { MatcheComponent } from './matche/matche.component';
+import { MessageComponent } from './message/message.component';
+import { ListComponent } from './list/list.component';
+import { AuthGuard } from '../guards/auth.guard';
+import { ForgetPasswordComponent } from './auth/forget-password/forget-password.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ConfirmpasswordComponent } from './confirmpassword/confirmpassword.component';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: HomeComponent ,   runGuardsAndResolvers:'always',  canActivate: [AuthGuard]},
+  {path: '',
+    runGuardsAndResolvers:'always',
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'members', component: MatcheComponent},
+      { path: 'lists', component: ListComponent },
+      { path: 'messages', component: MessageComponent }
+
+    ]
+  },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  {path: 'resetpassword', component:ForgetPasswordComponent},
+  {path: 'confirm-passwordreset', component: ConfirmpasswordComponent}
+
+
+
 ];
 
 
@@ -30,6 +52,12 @@ const appRoutes: Routes = [
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+
+    MatcheComponent,
+    MessageComponent,
+    ListComponent,
+    ForgetPasswordComponent,
+    ConfirmpasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +67,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     ToastrModule,
+    ProgressSpinnerModule,
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes),
   ],
