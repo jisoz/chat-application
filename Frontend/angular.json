@@ -104,7 +104,7 @@
              
              
             ],
-            "scripts": []
+            "scripts": ["node_modules/vivus/dist/vivus.min.js"]
           }
         }
       }

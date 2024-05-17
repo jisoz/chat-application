@@ -10,7 +10,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from '../services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -21,6 +21,11 @@ import { AuthGuard } from '../guards/auth.guard';
 import { ForgetPasswordComponent } from './auth/forget-password/forget-password.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ConfirmpasswordComponent } from './confirmpassword/confirmpassword.component';
+
+import { appConfig } from './app.config';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { ServererrorComponent } from './servererror/servererror.component';
+import { ConfirmemailComponent } from './confirmemail/confirmemail.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent ,   runGuardsAndResolvers:'always',  canActivate: [AuthGuard]},
@@ -37,8 +42,10 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {path: 'resetpassword', component:ForgetPasswordComponent},
-  {path: 'confirm-passwordreset', component: ConfirmpasswordComponent}
-
+  {path: 'confirm-passwordreset', component: ConfirmpasswordComponent},
+  {path: 'confirm-email', component: ConfirmemailComponent},
+  {path: 'unauthorized404', component: UnauthorizedComponent},
+  {path:'servererror', component: ServererrorComponent}
 
 
 ];
@@ -58,6 +65,9 @@ const appRoutes: Routes = [
     ListComponent,
     ForgetPasswordComponent,
     ConfirmpasswordComponent,
+    UnauthorizedComponent,
+    ServererrorComponent,
+    ConfirmemailComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +81,7 @@ const appRoutes: Routes = [
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [AuthService],
+  providers: [AuthService, appConfig.providers ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

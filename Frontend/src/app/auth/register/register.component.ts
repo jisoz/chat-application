@@ -44,12 +44,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.registerationForm.value)
+   
     this.userSubmitted = true;
     if (this.registerationForm.valid) {
       this.authService.signUp(this.registerationForm.value).subscribe(
         res=>{
-         this.alertify.success("User Registred");
+        //  this.alertify.success("User Registred");
+         this.alertify.success("An Email has been sent to you to confirm your registration plz check to login ");
       
         },err=>{
           this.alertify.error(err?.error.message);

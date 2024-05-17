@@ -1,8 +1,12 @@
-import { HttpClient ,HttpHeaders,HttpErrorResponse} from '@angular/common/http';
+import { HttpClient ,HttpHeaders,HttpErrorResponse, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
+interface ResetPasswordDto {
+  newPassword: string;
+  confirmNewPassword: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -51,6 +55,14 @@ export class AuthService {
     return this.http.get(`${this.baseUrl}confirm-passwordreset?userId=${userId}&token=${token}`,{headers: head_obj,responseType:"text" as any});
   }
   
+  verifyEmail(userId: string, token: string){
+    let head_obj=new HttpHeaders().set("Authorization","bearer " +token);
+    return this.http.get(`${this.baseUrl}confirm-email?userId=${userId}&token=${token}`,{headers: head_obj,responseType:"text" as any});
+  }
+  setnewpasword(userId: string, body:any){
+    const params = new HttpParams().set('userId', userId);
+  return this.http.post<any>(`${this.baseUrl}reset-password` , body, {params, responseType:"text" as any}  )
+  }
 }
 
 
