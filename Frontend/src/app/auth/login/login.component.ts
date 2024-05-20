@@ -20,9 +20,12 @@ this.loading = true;
  
    res=>{
     this.authservice.updateLoggedInState(true);
+    // console.log( this.authservice.getCurrentLoginState());
      const user=res.name
+     const Token=res.token;
     if(user){
      localStorage.setItem('user',user)
+     localStorage.setItem('Token',Token)
     }
   this.alertify.success("login success")
    this.route.navigate(["/"])

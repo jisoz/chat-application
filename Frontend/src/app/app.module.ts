@@ -28,7 +28,8 @@ import { ServererrorComponent } from './servererror/servererror.component';
 import { ConfirmemailComponent } from './confirmemail/confirmemail.component';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent ,   runGuardsAndResolvers:'always',  canActivate: [AuthGuard]},
+  {path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   {path: '',
     runGuardsAndResolvers:'always',
     canActivate: [AuthGuard],
@@ -39,7 +40,6 @@ const appRoutes: Routes = [
 
     ]
   },
-  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {path: 'resetpassword', component:ForgetPasswordComponent},
   {path: 'confirm-passwordreset', component: ConfirmpasswordComponent},

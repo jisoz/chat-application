@@ -21,12 +21,19 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}Register`, userobj)
    }
 
-   isLoggedIn(): BehaviorSubject<boolean> {
-    return this.loggedIn;
+   isLoggedIn(): Observable<boolean> {
+    
+    return this.loggedIn.asObservable();
+    
   }
   
   updateLoggedInState(status: boolean) {
+    console.log(this.isLoggedIn())
     this.loggedIn.next(status);
+  }
+
+  getCurrentLoginState(): boolean {
+    return this.loggedIn.getValue();
   }
    signin(userobj:any){
     return this.http.post<any>(`${this.baseUrl}Login`, userobj).pipe(
