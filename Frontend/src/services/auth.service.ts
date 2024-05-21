@@ -13,8 +13,10 @@ interface ResetPasswordDto {
 export class AuthService {
 
   private baseUrl:string="http://localhost:5197/api/Account/"
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private loggedIn!: BehaviorSubject<boolean>
   constructor( private http:HttpClient) {
+    const savedLoginState = localStorage.getItem('isLoggedIn') === 'true';
+    this.loggedIn = new BehaviorSubject<boolean>(savedLoginState);
    }
 
    signUp(userobj:any){
@@ -27,13 +29,18 @@ export class AuthService {
     
   }
   
-  updateLoggedInState(status: boolean) {
-    console.log(this.isLoggedIn())
+  updateLoggedInState(status: boolean):void {
+  
     this.loggedIn.next(status);
+    localStorage.setItem('isLoggedIn', status.toString());
   }
 
   getCurrentLoginState(): boolean {
     return this.loggedIn.getValue();
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('Token'); 
   }
    signin(userobj:any){
     return this.http.post<any>(`${this.baseUrl}Login`, userobj).pipe(
@@ -58,13 +65,12 @@ export class AuthService {
   }
 
   verifyEmailForPasswordReset(userId: string, token: string) {
-    let head_obj=new HttpHeaders().set("Authorization","bearer " +token);
-    return this.http.get(`${this.baseUrl}confirm-passwordreset?userId=${userId}&token=${token}`,{headers: head_obj,responseType:"text" as any});
+   
+    return this.http.get(`${this.baseUrl}confirm-passwordreset?userId=${userId}&token=${token}`,{responseType:"text" as any});
   }
   
   verifyEmail(userId: string, token: string){
-    let head_obj=new HttpHeaders().set("Authorization","bearer " +token);
-    return this.http.get(`${this.baseUrl}confirm-email?userId=${userId}&token=${token}`,{headers: head_obj,responseType:"text" as any});
+    return this.http.get(`${this.baseUrl}confirm-email?userId=${userId}&token=${token}`,{responseType:"text" as any});
   }
   setnewpasword(userId: string, body:any){
     const params = new HttpParams().set('userId', userId);

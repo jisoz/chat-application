@@ -26,6 +26,11 @@ import { appConfig } from './app.config';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ServererrorComponent } from './servererror/servererror.component';
 import { ConfirmemailComponent } from './confirmemail/confirmemail.component';
+import { MemberCardComponent } from './member-card/member-card.component';
+import { MemeberDetailComponent } from './memeber-detail/memeber-detail.component';
+import {TabsModule} from 'ngx-bootstrap/tabs';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { MemeberEditComponent } from './memeber-edit/memeber-edit.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent },
@@ -35,6 +40,8 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'members', component: MatcheComponent},
+      {path: 'members/:username', component:MemeberDetailComponent}, 
+      {path: 'member/edit', component:MemeberEditComponent}, 
       { path: 'lists', component: ListComponent },
       { path: 'messages', component: MessageComponent }
 
@@ -68,6 +75,9 @@ const appRoutes: Routes = [
     UnauthorizedComponent,
     ServererrorComponent,
     ConfirmemailComponent,
+    MemberCardComponent,
+    MemeberDetailComponent,
+    MemeberEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +90,8 @@ const appRoutes: Routes = [
     ProgressSpinnerModule,
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    TabsModule.forRoot(),
+    NgxGalleryModule
   ],
   providers: [AuthService, appConfig.providers ],
   bootstrap: [AppComponent]

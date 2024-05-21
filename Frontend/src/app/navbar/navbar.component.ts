@@ -29,6 +29,7 @@ export class NavbarComponent {
     localStorage.removeItem('user');
     localStorage.removeItem('Token');
     this.authservice.updateLoggedInState(false);
+    localStorage.removeItem('isLoggedIn');
     // console.log( this.authservice.getCurrentLoginState());
     this.alertify.success('You are logged out !');
     this.router.navigate(['/login']);

@@ -49,8 +49,13 @@
             Welcome {{loggedinUser}}
         </a>
         <div class="dropdown-menu" *dropdownMenu>
+          <a   class="dropdown-item" routerLink="member/edit">
+            <i class="fa fa-edit"></i> Edit Profile</a>
+
             <a (click)='onLogout()'  class="dropdown-item">
-              <i class="fas fa-sign-out-alt"></i> Logout</a>
+              <i class="fa fa-sign-out"></i> Logout</a>
+
+              
         </div>
       </div>
     </form>
