@@ -45,8 +45,9 @@
       </div>
 
       <div *ngIf="loggedin()"  class="dropdown mr-5" dropdown>
+        <img src={{loggedinUser?.photoUrl}} alt="">
         <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)="false">
-            Welcome {{loggedinUser}}
+         {{loggedinUser?.name}}
         </a>
         <div class="dropdown-menu" *dropdownMenu>
           <a   class="dropdown-item" routerLink="member/edit">

@@ -21,7 +21,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { ForgetPasswordComponent } from './auth/forget-password/forget-password.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ConfirmpasswordComponent } from './confirmpassword/confirmpassword.component';
-
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { appConfig } from './app.config';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ServererrorComponent } from './servererror/servererror.component';
@@ -29,11 +29,15 @@ import { ConfirmemailComponent } from './confirmemail/confirmemail.component';
 import { MemberCardComponent } from './member-card/member-card.component';
 import { MemeberDetailComponent } from './memeber-detail/memeber-detail.component';
 import {TabsModule} from 'ngx-bootstrap/tabs';
-import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+
 import { MemeberEditComponent } from './memeber-edit/memeber-edit.component';
+import { preventUnsavedChangesGuard } from '../guards/prevent-unsaved-changes.guard';
+import { NgxSpinner, NgxSpinnerModule } from 'ngx-spinner';
+import { PhotoEditorComponent } from './photo-editor/photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent },
+  {path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   {path: '',
     runGuardsAndResolvers:'always',
@@ -41,7 +45,7 @@ const appRoutes: Routes = [
     children: [
       { path: 'members', component: MatcheComponent},
       {path: 'members/:username', component:MemeberDetailComponent}, 
-      {path: 'member/edit', component:MemeberEditComponent}, 
+      {path: 'member/edit', component:MemeberEditComponent, canDeactivate:[preventUnsavedChangesGuard]}, 
       { path: 'lists', component: ListComponent },
       { path: 'messages', component: MessageComponent }
 
@@ -78,6 +82,7 @@ const appRoutes: Routes = [
     MemberCardComponent,
     MemeberDetailComponent,
     MemeberEditComponent,
+    PhotoEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +96,9 @@ const appRoutes: Routes = [
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     TabsModule.forRoot(),
-    NgxGalleryModule
+    NgxGalleryModule,
+    NgxSpinnerModule,
+    FileUploadModule
   ],
   providers: [AuthService, appConfig.providers ],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { HttpClient ,HttpHeaders,HttpErrorResponse, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, ReplaySubject, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 interface ResetPasswordDto {
   newPassword: string;
@@ -14,13 +14,28 @@ export class AuthService {
 
   private baseUrl:string="http://localhost:5197/api/Account/"
   private loggedIn!: BehaviorSubject<boolean>
+  private currentusersource =new ReplaySubject<any>(1);
+  currentuser$=this.currentusersource.asObservable();
   constructor( private http:HttpClient) {
     const savedLoginState = localStorage.getItem('isLoggedIn') === 'true';
     this.loggedIn = new BehaviorSubject<boolean>(savedLoginState);
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.currentusersource.next(JSON.parse(user));
+    }
    }
 
    signUp(userobj:any){
-    return this.http.post<any>(`${this.baseUrl}Register`, userobj)
+    return this.http.post<any>(`${this.baseUrl}Register`, userobj).pipe(
+      map((response:any)=>{
+        const user=response;
+        if(user){
+          this.setcurrentuser(user);
+        }
+      }
+      
+    )
+  )
    }
 
    isLoggedIn(): Observable<boolean> {
@@ -40,21 +55,42 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('Token'); 
+
+    const user = localStorage.getItem('user');
+  if (user) {
+    try {
+      const userObj = JSON.parse(user);
+      return userObj.token || null;
+    } catch (e) {
+      console.error('Error parsing user from localStorage', e);
+      return null;
+    }
+  }
+  return null;
   }
    signin(userobj:any){
     return this.http.post<any>(`${this.baseUrl}Login`, userobj).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 404) {
-          // Handle 404 error (user not found)
-          alert('User not found');
-        }
-        return throwError(error);
-      })
+    map((response:any)=>{
+      const user=response;
+      if(user){
+        this.setcurrentuser(user);
+      }
+    }
+
+    )
     )
    }
 
-
+   setcurrentuser(user:any){
+    localStorage.setItem('user', JSON.stringify(user));
+  this.currentusersource.next(user);
+   }
+   logout(){
+    localStorage.removeItem('user');
+  
+    localStorage.removeItem('isLoggedIn');
+    this.currentusersource.next(null);
+   }
    resetpassword(email: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}forgot-password`,  email,{responseType:"text" as any} )
     .pipe( 
@@ -76,6 +112,8 @@ export class AuthService {
     const params = new HttpParams().set('userId', userId);
   return this.http.post<any>(`${this.baseUrl}reset-password` , body, {params, responseType:"text" as any}  )
   }
+
+  
 }
 
 

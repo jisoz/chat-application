@@ -25,10 +25,10 @@ export const ErrorInterceptor: HttpInterceptorFn = (req, next)=> {
     catchError((error: HttpErrorResponse) => {
       console.log("Intercepting Request with Error", error);
 
-      if (error.status === 0 || error.status==401 || error.error=="Email Not Verified") {
+      if (error.error=="Email Not Verified") {
         console.log("Error 401: Unauthorized", error.message);
         router.navigate(['/unauthorized404']);
-      }else if(error.status === 500){
+      }else if(error.status === 0){
         router.navigate(['/servererror']);
       }
      
