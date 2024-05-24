@@ -1,28 +1,15 @@
-.ng-invalid .ng-touched{
-    border-color:red
-}
 
-.error-block{
-    color: red;
-}
-
-.isvalid {
-    /* border-color: green !important; */
-    border-color: green !important;
-  }
   
   .card {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   
 }
 
-.card-header {
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
-}
+
 
 .card-body {
-    padding: 20px;
+    padding: 20px;  
 }
 
 .form-groupp {
@@ -33,4 +20,14 @@
 
 .form-check-input {
     margin-right: 5px;
+}
+.card-header {
+    display: flex;
+    align-items: center;
+}
+.card-header img{
+    width: 100px; /* Set your desired width */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 100px; /* Set your desired max height */
+
 }

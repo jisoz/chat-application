@@ -1,15 +1,59 @@
-.ng-invalid .ng-touched{
-    border-color:red
-}
-
-.error-block{
-    color: red;
-}
-
-.is-valid {
-    /* border-color: green !important; */
-    border-color: green !important;
+.row {
+    display: flex;
   }
   
-
+  .bg-image-section {
+    background-image: url('../../../assets/dating.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; /* Or any height you prefer */
+    
+  }
+ 
+  .card {
+    height: 100%;
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .form-group {
+    position: relative;
+  }
+  
+  .is-valid {
+    border-color: #28a745;
+  }
+  
+  .is-invalid {
+    border-color: #dc3545;
+  }
+  
+  .error-block {
+    color: #dc3545;
+    position: absolute;
+    bottom: -20px; /* Adjust according to your layout */
+    left: 0;
+  }
+  
+  .valid-feedback {
+    color: #28a745;
+    display: none;
+  }
+  
+  .invalid-feedback {
+    color: #dc3545;
+    display: none;
+  }
+  
+  .ng-touched.ng-valid ~ .valid-feedback {
+    display: block;
+  }
+  
+  .ng-touched.ng-invalid ~ .invalid-feedback {
+    display: block;
+  }
   
