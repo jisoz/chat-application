@@ -1,4 +1,4 @@
-<div class="row ">
+<!-- <div class="row ">
   <div class="col-md-6 order-md-2 mt-1">
     <div class="card ">
       <div class="card-header">
@@ -7,24 +7,60 @@
       <div class="card-body">
         <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()">
           <div class="form-group col-12">
+            <label for="gender" class="form-label">Gender</label>
+            <div>
+              <label class="form-check-label mr-3">
+                <input type="radio" formControlName="gender" value="male" class="form-check-input"> Male
+              </label>
+              <label class="form-check-label">
+                <input type="radio" formControlName="gender" value="female" class="form-check-input"> Female
+              </label>
+            </div>
+          </div>
+
+
+
+          <div class="form-group col-12">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" formControlName="fullName" [ngClass]="{ 'is-valid': fullName.valid && fullName.touched }">
-            <span *ngIf="fullName.hasError('minlength') && (fullName.touched || userSubmitted)" class="error-block">Name must be at least 5 characters long</span>
+            <span *ngIf="fullName.hasError('minlength') && (fullName.touched || userSubmitted)" class="invalid-feedback">Name must be at least 5 characters long</span>
           </div>
 
           <div class="form-group col-12">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-valid': email.valid && email.touched }">
-            <span *ngIf="!email.valid && (email.touched || userSubmitted)" class="error-block">
+            <span *ngIf="!email.valid && (email.touched || userSubmitted)" class="invalid-feedback">
               <span *ngIf="email.hasError('required')">Please provide email id</span>
               <span *ngIf="email.hasError('email')">Please provide valid email id</span>
             </span>
           </div>
 
           <div class="form-group col-12">
+            <label for="knownAs" class="form-label">Known As</label>
+            <input type="text" class="form-control" formControlName="knownAs">
+          </div>
+
+          <div class="form-group col-12">
+            <label for="dateOfBirth" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" formControlName="dateOfBirth">
+          </div>
+
+
+          <div class="form-group col-12">
+          <label for="city" class="form-label">City</label>
+          <input type="text" class="form-control" formControlName="city">
+        </div>
+
+        <div class="form-group col-12">
+          <label for="country" class="form-label">Country</label>
+          <input type="text" class="form-control" formControlName="country">
+        </div>
+
+
+          <div class="form-group col-12">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-valid': password.valid && password.touched }">
-            <span *ngIf="!password.valid && (password.touched || userSubmitted)" class="error-block">
+            <span *ngIf="!password.valid && (password.touched || userSubmitted)" class="invalid-feedback">
               <span *ngIf="password.hasError('required')">Please provide password</span>
               <span *ngIf="password.hasError('pattern')">Password should be at least 8 characters long and contain letters, numbers, and at least one of $#</span>
             </span>
@@ -47,4 +83,153 @@
     </div>
   </div>
   <div class="col-md-6 order-md-1 mt-n2 bg-image-section"></div>
+</div> -->
+
+<div class="row">
+  <div class="col-md-6 order-md-2 mr-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="mb-0">Create An Account</h3>
+        <p style="font-size: 18px; " class="text-primary mt-1 ">Find Your Soulmate Now By Registering with us !</p>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group gender ">
+                <label for="gender" class="form-label">I'am :</label>
+                <div class="radios">
+                  <label class="form-check-label mr-3 ">
+                    <input type="radio" formControlName="gender" value="male" class="form-check-input" name="gend"> <span>Male</span>
+                  </label>
+                  <label class="form-check-label">
+                    <input type="radio" formControlName="gender" value="female" class="form-check-input"  name="gend"> <span>Female</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+              <!-- <div class="col-md-6">
+                <div class="form-group">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" formControlName="fullName" [ngClass]="{ 'is-valid': fullName.valid && fullName.touched }">
+                  <span *ngIf="fullName.hasError('minlength') && (fullName.touched || userSubmitted)" class="invalid-feedback">Name must be at least 5 characters long</span>
+                </div>
+              </div> -->
+          </div>
+          <!-- Add similar row and col elements for other form fields -->
+          <div class="row">
+             <div class="col-md-6">
+              <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" formControlName="fullName" [ngClass]="{ 'is-valid': fullName.valid && fullName.touched }">
+                <span *ngIf="fullName.hasError('minlength') && (fullName.touched || userSubmitted)" class="invalid-feedback">Name must be at least 5 characters long</span>
+              </div>
+            </div>
+            <!-- <div class="col-md-6">
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-valid': email.valid && email.touched }">
+                <span *ngIf="!email.valid && (email.touched || userSubmitted)" class="invalid-feedback">
+                  <span *ngIf="email.hasError('required')">Please provide email id</span>
+                  <span *ngIf="email.hasError('email')">Please provide valid email id</span>
+                </span>
+              </div>
+            </div> -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="knownAs" class="form-label">Known As</label>
+                <input type="text" class="form-control" formControlName="knownAs">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group ">
+                <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" formControlName="dateOfBirth">
+              </div>
+    
+            </div>
+
+            <!-- <div class="col-md-6">
+              <div class="form-group">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" formControlName="city">
+              </div>
+            </div> -->
+              <div class="col-md-6">
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-valid': email.valid && email.touched }">
+                <span *ngIf="!email.valid && (email.touched || userSubmitted)" class="invalid-feedback">
+                  <span *ngIf="email.hasError('required')">Please provide email id</span>
+                  <span *ngIf="email.hasError('email')">Please provide valid email id</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group col-12">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" class="form-control" formControlName="country">
+              </div>
+            </div>
+             <div class="col-md-6">
+              <div class="form-group">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" formControlName="city">
+              </div>
+            </div>
+            <!-- <div class="col-md-6">
+              <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-valid': password.valid && password.touched }">
+                <span *ngIf="!password.valid && (password.touched || userSubmitted)" class="invalid-feedback">
+                  <span *ngIf="password.hasError('required')">Please provide password</span>
+                  <span *ngIf="password.hasError('pattern')">Password should be at least 8 characters long and contain letters, numbers, and at least one of $#</span>
+                </span>
+              </div>
+            </div> -->
+          </div>
+
+          <div class="row">
+
+             <div class="col-md-6">
+              <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-valid': password.valid && password.touched }">
+                <span *ngIf="!password.valid && (password.touched || userSubmitted)" class="invalid-feedback">
+                  <span *ngIf="password.hasError('required')">Please provide password</span>
+                  <span *ngIf="password.hasError('pattern')">Password should be at least 8 characters long and contain letters, numbers, and at least one of $#</span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group ">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" formControlName="confirmPassword" [ngClass]="{
+                    'is-invalid': confirmPassword.touched && registerationForm.hasError('mismatch'),
+                    'is-valid': confirmPassword.valid && registerationForm.hasError('mismatch') !== true
+                 }">
+                <div *ngIf="confirmPassword.touched && registerationForm.hasError('mismatch')" class="invalid-feedback">Passwords do not match</div>
+              </div>
+            </div>
+          </div>
+          <!-- Continue adding rows and cols for other form fields -->
+          <div class="form-group mt-1 spann">
+            <button type="submit" class="btn btn-primary mr-3" [disabled]="!registerationForm.valid">Create Account</button>
+            <div >Already Have An Account ? <a routerLink="/login" class="text-primary">Sign In</a></div> 
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 order-md-1 mt-n2 bg-image-section"></div>
 </div>
+
