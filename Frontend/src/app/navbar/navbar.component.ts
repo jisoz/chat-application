@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
   }
   onLogout() {
 
-    this.authservice.updateLoggedInState(false);
+    
    this.authservice.logout();
     // console.log( this.authservice.getCurrentLoginState());
     this.alertify.success('You are logged out !');

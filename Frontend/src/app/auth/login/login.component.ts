@@ -18,7 +18,7 @@ onLogin(loginform :NgForm){
   this.authservice.signin(loginform.value).subscribe(
  
    res=>{
-    this.authservice.updateLoggedInState(true);
+
     // console.log( this.authservice.getCurrentLoginState());
 
 

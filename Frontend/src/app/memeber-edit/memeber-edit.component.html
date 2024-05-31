@@ -9,7 +9,7 @@
     </div>
     <div class="col-2">
         <div class="card">
-            <img src="{{member.photoUrl}}" alt="{{member.knownAs}}" class="card-img-top img-thumbnail">
+            <img  [src]="member.photoUrl ? member .photoUrl : '../../assets/default.jpg'" alt="{{member.knownAs}}" class="card-img-top img-thumbnail">
          <div class="card-body">
             <div>
                 <strong>Location:</strong>

@@ -51,3 +51,37 @@
     display: block;
   }
   
+
+  .select-container {
+    position: relative;
+  }
+  
+  .select-container select {
+    appearance: none; /* Remove default arrow in most browsers */
+    -webkit-appearance: none; /* Remove default arrow in Safari and Chrome */
+    -moz-appearance: none; /* Remove default arrow in Firefox */
+    padding-right: 2rem; /* Space for custom arrow */
+    border: 1px solid #ced4da; /* Border style */
+    border-radius: 0.25rem; /* Rounded corners */
+    padding: 0.5rem 1rem; /* Padding inside the select box */
+    background-color: none; /* Background color */
+    color: #1cc4a8; /* Text color */
+    font-size: 1rem; /* Font size */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transition effects */
+  }
+  
+  .select-container select:focus {
+    border-color: #80bdff; /* Border color on focus */
+    outline: 0; /* Remove outline */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Box shadow on focus */
+  }
+  
+  .select-container:after {
+    content: '\25BC'; /* Unicode for down arrow */
+    position: absolute; /* Absolute positioning */
+    top: 50%; /* Center vertically */
+    right: 10px; /* Position to the right */
+    pointer-events: none; /* Prevent click events */
+    transform: translateY(-50%); /* Center vertically */
+    color: #c41c92; /* Arrow color */
+  }

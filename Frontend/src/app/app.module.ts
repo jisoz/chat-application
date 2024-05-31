@@ -35,10 +35,11 @@ import { preventUnsavedChangesGuard } from '../guards/prevent-unsaved-changes.gu
 import { NgxSpinner, NgxSpinnerModule } from 'ngx-spinner';
 import { PhotoEditorComponent } from './photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
-
+import {PaginationModule} from 'ngx-bootstrap/pagination'
+import { loginGardGuard } from '../guards/login-gard.guard';
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent , canActivate: [loginGardGuard] },
   {path: '',
     runGuardsAndResolvers:'always',
     canActivate: [AuthGuard],
@@ -98,7 +99,8 @@ const appRoutes: Routes = [
     TabsModule.forRoot(),
     NgxGalleryModule,
     NgxSpinnerModule,
-    FileUploadModule
+    FileUploadModule,
+    PaginationModule.forRoot()
   ],
   providers: [AuthService, appConfig.providers ],
   bootstrap: [AppComponent]

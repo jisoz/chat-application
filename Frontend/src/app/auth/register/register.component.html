@@ -141,7 +141,10 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="knownAs" class="form-label">Known As</label>
-                <input type="text" class="form-control" formControlName="knownAs">
+                <input type="text" class="form-control" formControlName="knownAs"  [ngClass]="{ 'is-valid': knownAs.valid && knownAs.touched }">
+                <span *ngIf="!knownAs.valid && (knownAs.touched || knownAs)" class="invalid-feedback">
+                  <span *ngIf="knownAs.hasError('required')">Please provide knownAs</span>
+                  </span>
               </div>
             </div>
           </div>
@@ -150,7 +153,10 @@
             <div class="col-md-6">
               <div class="form-group ">
                 <label for="dateOfBirth" class="form-label">Date of Birth</label>
-                <input type="date" class="form-control" formControlName="dateOfBirth">
+                <input type="date" class="form-control" formControlName="dateOfBirth"  [ngClass]="{ 'is-valid': dateOfBirth.valid && dateOfBirth.touched }">
+                <span *ngIf="!dateOfBirth.valid && (dateOfBirth.touched || dateOfBirth)" class="invalid-feedback">
+                  <span *ngIf="dateOfBirth.hasError('required')">Please provide dateOfBirth</span>
+                  </span>
               </div>
     
             </div>
@@ -177,15 +183,33 @@
             <div class="col-md-6">
               <div class="form-group col-12">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" class="form-control" formControlName="country">
+                <div class="select-container">
+                  <select class="form-control" formControlName="country" [ngClass]="{'is-invalid': !registerationForm.controls['country'].valid && (registerationForm.controls['country'].touched || userSubmitted) }">
+                    <option value="">Select a country</option>
+                    <option *ngFor="let country of countries" [value]="country.iso2">{{ country.name }}</option>
+                  </select>
+                </div>
+                <span *ngIf="!registerationForm.controls['country'].valid && (registerationForm.controls['country'].touched || userSubmitted)" class="invalid-feedback">
+                  <span *ngIf="registerationForm.controls['country'].hasError('required')">Please provide country</span>
+                </span>
               </div>
             </div>
-             <div class="col-md-6">
-              <div class="form-group">
-                <label for="city" class="form-label">City</label>
-                <input type="text" class="form-control" formControlName="city">
-              </div>
-            </div>
+            
+            <div class="col-md-6">
+    <div class="form-group col-12">
+      <label for="city" class="form-label">City</label>
+      <div class="select-container">
+        <select class="form-control" formControlName="city" [ngClass]="{ 'is-valid': city.valid && city.touched }">
+          <option value="">Select a city</option>
+          <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+        </select>
+      </div>
+   
+      <span *ngIf="!city.valid && (city.touched || city)" class="invalid-feedback">
+        <span *ngIf="city.hasError('required')">Please provide city</span>
+      </span>
+    </div>
+  </div>
             <!-- <div class="col-md-6">
               <div class="form-group">
                 <label for="password" class="form-label">Password</label>

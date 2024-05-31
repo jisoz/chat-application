@@ -13,18 +13,24 @@ interface ResetPasswordDto {
 export class AuthService {
 
   private baseUrl:string="http://localhost:5197/api/Account/"
-  private loggedIn!: BehaviorSubject<boolean>
+  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.checkInitialLoginState());
   private currentusersource =new ReplaySubject<any>(1);
   currentuser$=this.currentusersource.asObservable();
   constructor( private http:HttpClient) {
-    const savedLoginState = localStorage.getItem('isLoggedIn') === 'true';
-    this.loggedIn = new BehaviorSubject<boolean>(savedLoginState);
     const user = localStorage.getItem('user');
     if (user) {
       this.currentusersource.next(JSON.parse(user));
+      this.loggedIn.next(true);
+    } else {
+      this.loggedIn.next(false);
     }
+   
    }
 
+   private checkInitialLoginState(): boolean {
+    const user = localStorage.getItem('user');
+    return user !== null;
+  }
    signUp(userobj:any){
     return this.http.post<any>(`${this.baseUrl}Register`, userobj).pipe(
       map((response:any)=>{
@@ -74,6 +80,7 @@ export class AuthService {
       const user=response;
       if(user){
         this.setcurrentuser(user);
+        this.updateLoggedInState(true);
       }
     }
 
@@ -87,7 +94,7 @@ export class AuthService {
    }
    logout(){
     localStorage.removeItem('user');
-  
+    this.updateLoggedInState(false);
     localStorage.removeItem('isLoggedIn');
     this.currentusersource.next(null);
    }
@@ -101,12 +108,13 @@ export class AuthService {
   }
 
   verifyEmailForPasswordReset(userId: string, token: string) {
-   
-    return this.http.get(`${this.baseUrl}confirm-passwordreset?userId=${userId}&token=${token}`,{responseType:"text" as any});
+    let head_obj=new HttpHeaders().set("Authorization","Bearer " +token);
+    return this.http.get(`${this.baseUrl}confirm-passwordreset?userId=${userId}&token=${token}`,{responseType:"text" as any,headers: head_obj});
   }
   
   verifyEmail(userId: string, token: string){
-    return this.http.get(`${this.baseUrl}confirm-email?userId=${userId}&token=${token}`,{responseType:"text" as any});
+    let head_obj=new HttpHeaders().set("Authorization","Bearer " +token);
+    return this.http.get(`${this.baseUrl}confirm-email?userId=${userId}&token=${token}`,{responseType:"text" as any,headers: head_obj});
   }
   setnewpasword(userId: string, body:any){
     const params = new HttpParams().set('userId', userId);

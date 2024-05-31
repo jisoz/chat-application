@@ -91,8 +91,13 @@ initializeuploader(): void {
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       try {
         if (response) {
-          const photo = JSON.parse(response);
+          const photo:Photo = JSON.parse(response);
           this.memeber.photos.push(photo);
+          if(photo.isMain){
+            this.user.photoUrl=photo.url;
+            this.memeber.photoUrl=photo.url;
+            this.authservice.setcurrentuser(this.user);
+          }
         }
       } catch (error) {
         console.error('Error in onSuccessItem:', error);
@@ -109,6 +114,9 @@ try{
   this.http.delete(this.baseUrl + `deleteimageuser/${publicid}`).subscribe(
     res=>{
     this.memeber.photos = this.memeber.photos.filter((photo: any) => photo.publicId !== publicid);
+    this.user.photoUrl="../../assets/default.jpg";
+    this.memeber.photoUrl="../../assets/default.jpg";
+    this.authservice.setcurrentuser(this.user);
      this.alertify.success("photo removed successfully")
     },
    

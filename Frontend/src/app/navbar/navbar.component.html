@@ -49,7 +49,7 @@
       </div>
 
       <div *ngIf="loggedin()"  class="dropdown mr-5" dropdown>
-        <img src={{loggedinUser?.photoUrl}} alt="">
+        <img  [src]="loggedinUser.photoUrl ? loggedinUser.photoUrl : '../../assets/default.jpg'" alt="">
         <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)="false">
          {{loggedinUser?.name}}
         </a>

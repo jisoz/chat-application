@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../../../services/auth.service';
 import { AlertifyServiceService } from '../../../services/alertify-service.service';
 import { Router } from '@angular/router';
+import { CountryService } from '../../../services/country.service';
 
 @Component({
   selector: 'app-register',
@@ -12,19 +13,39 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   registerationForm!: FormGroup;
   userSubmitted!: boolean;
+  countries: any[] = [];
+  cities:any[]=[];
+
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private alertify: AlertifyServiceService ,
-    private Route: Router
+    private Route: Router,
+    private countryService: CountryService
   ) { }
     
   ngOnInit(): void {
     this.createRegisterationForm();
+    this.countryService.getCountries().subscribe(data => {
+      this.countries = data;
+    });
+
+    this.country.valueChanges.subscribe(countryIso => {
+      if (countryIso) {
+        this.countryService.getCities(countryIso).subscribe(data => {
+          this.cities = data;
+        });
+      }
+    });
   }
 
   createRegisterationForm() {
     this.registerationForm =  this.fb.group({
       fullName: [null, [Validators.required, Validators.minLength(5)]],
+      knownAs:[null, [Validators.required]],
+      dateOfBirth:[null, [Validators.required]],
+      city: [null, [Validators.required]],
+      country: [null, [Validators.required]],
+      gender:[null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.pattern(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[$#@]).{8,}$/)]],
       confirmPassword: [null, Validators.required]
@@ -73,6 +94,23 @@ get password() {
 }
 get confirmPassword(){
   return this.registerationForm.get('confirmPassword') as FormControl;
+}
+
+get gender(){
+  return this.registerationForm.get('gender') as FormControl;
+}
+get country(){
+  return this.registerationForm.get('country') as FormControl;
+}
+get city(){
+  return this.registerationForm.get('city') as FormControl;
+}
+get dateOfBirth(){
+  return this.registerationForm.get('dateOfBirth') as FormControl;
+}
+
+get knownAs(){
+  return this.registerationForm.get('knownAs') as FormControl;
 }
 
 }
