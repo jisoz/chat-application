@@ -58,9 +58,12 @@ setmainphoto(photo:Photo){
 
 initializeuploader(): void {
   try {
+    const userString = localStorage.getItem('user');
+    const user = userString ? JSON.parse(userString) : null;
+    const authToken = 'Bearer ' + user.token;
     this.uploader = new FileUploader({
       url: this.baseUrl + "upload-image-user",
-      authToken: 'Bearer ' + localStorage.getItem('Token'),
+      authToken: authToken,
       isHTML5: true,
       allowedFileType: ['image'],
       removeAfterUpload: true,

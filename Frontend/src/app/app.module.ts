@@ -37,6 +37,7 @@ import { PhotoEditorComponent } from './photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import {PaginationModule} from 'ngx-bootstrap/pagination'
 import { loginGardGuard } from '../guards/login-gard.guard';
+import { TimeagoModule } from 'ngx-timeago';
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent , canActivate: [loginGardGuard] },
@@ -100,7 +101,8 @@ const appRoutes: Routes = [
     NgxGalleryModule,
     NgxSpinnerModule,
     FileUploadModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    TimeagoModule.forRoot()
   ],
   providers: [AuthService, appConfig.providers ],
   bootstrap: [AppComponent]

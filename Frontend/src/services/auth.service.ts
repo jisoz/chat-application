@@ -12,7 +12,7 @@ interface ResetPasswordDto {
 })
 export class AuthService {
 
-  private baseUrl:string="http://localhost:5197/api/Account/"
+  private baseUrl:string="http://localhost:5197/api/Account/" ;
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.checkInitialLoginState());
   private currentusersource =new ReplaySubject<any>(1);
   currentuser$=this.currentusersource.asObservable();
@@ -121,7 +121,9 @@ export class AuthService {
   return this.http.post<any>(`${this.baseUrl}reset-password` , body, {params, responseType:"text" as any}  )
   }
 
-  
+  isUserOnline(userId: number) {
+    return this.http.get<any>(`${this.baseUrl}is-online/${userId}`);
+  }
 }
 
 

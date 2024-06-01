@@ -1,0 +1,29 @@
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .filter-form .form-group {
+    margin-bottom: 5px;
+  }
+  
+  .filter-form .form-control {
+    margin-right: 5px;
+  }
+  
+  .filter-form .btn {
+    margin-right: 5px;
+  }
+  
+  @media (max-width: 768px) {
+    .filter-form .form-group {
+      flex: 1 1 auto;
+      margin-bottom: 5px;
+    }
+    .filter-form button {
+      flex: 1 1 auto;
+    }
+  }
+  
