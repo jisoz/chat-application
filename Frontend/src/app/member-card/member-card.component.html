@@ -12,6 +12,18 @@
     <h6 class="card-title text-center mb-1" > <i class="fa fa-user mr-2" ></i>
      {{member.knownAs}}
     </h6>
+    <div class="text-center">
+      <div *ngIf="isOnline" class="text-center">
+        <span>Online</span>
+        <span class="status-circle online"></span>
+      </div>
+      <div *ngIf="!isOnline" class="text-center">
+        <span>Offline</span>
+        <span class="status-circle offline"></span>
+      </div>
+    
+    </div>
+   
       <p class="card-text text-center text-muted">{{member.city}}</p>
     </div>
   </div>

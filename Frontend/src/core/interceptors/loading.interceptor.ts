@@ -4,13 +4,27 @@ import { BusyService } from '../../services/busy.service';
 import { delay, finalize } from 'rxjs';
 
 export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
-  const busyservice=inject(BusyService);
-  busyservice.Busy();
+   const busyService = inject(BusyService);
+
+
+  const excludedUrls = [
+    'http://localhost:5197/api/Account/is-online',
+    
+  ];
+
+  
+  const isExcluded = excludedUrls.some(url => req.url.includes(url));
+
+  if (!isExcluded) {
+    busyService.Busy();
+  }
+
   return next(req).pipe(
-   delay(1000),
-   finalize(()=>{
-    busyservice.idle();
-   })
-   
+    delay(1000),
+    finalize(() => {
+      if (!isExcluded) {
+        busyService.idle();
+      }
+    })
   );
 };

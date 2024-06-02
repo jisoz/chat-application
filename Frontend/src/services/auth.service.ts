@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, ReplaySubject, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+
 interface ResetPasswordDto {
   newPassword: string;
   confirmNewPassword: string;
@@ -13,6 +14,8 @@ interface ResetPasswordDto {
 export class AuthService {
 
   private baseUrl:string="http://localhost:5197/api/Account/" ;
+
+ 
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.checkInitialLoginState());
   private currentusersource =new ReplaySubject<any>(1);
   currentuser$=this.currentusersource.asObservable();
@@ -121,9 +124,11 @@ export class AuthService {
   return this.http.post<any>(`${this.baseUrl}reset-password` , body, {params, responseType:"text" as any}  )
   }
 
-  isUserOnline(userId: number) {
-    return this.http.get<any>(`${this.baseUrl}is-online/${userId}`);
+
+  isUserOnline(userId: number): Observable<{ isOnline: boolean }> {
+    return this.http.get<{ isOnline: boolean }>(`${this.baseUrl}is-online/${userId}`);
   }
+
 }
 
 

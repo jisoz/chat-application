@@ -5,7 +5,7 @@ export class userparams{
     minAge=18;
     maxage=100;
     pageNumber=1;
-    pageSize=1;
+    pageSize=2;
     curentUsername:string;
 
     constructor(user:any){
