@@ -9,6 +9,9 @@ export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
 
   const excludedUrls = [
     'http://localhost:5197/api/Account/is-online',
+    'https://api.countrystatecity.in/v1/countries',
+    'https://api.countrystatecity.in/v1'
+
     
   ];
 

@@ -1,33 +1,387 @@
 
   
-  .card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   
+
+
+
+.columns.is-gapless:last-child {
+    margin-bottom: 0;
+}
+@media screen and (min-width: 769px), print {
+    .columns:not(.is-desktop) {
+        display: flex;
+    }
+}
+.columns.is-gapless {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
 }
 
 
 
-.card-body {
-    padding: 20px;  
+.columns.is-gapless>.column {
+    margin: 0;
+    padding: 0 !important;
 }
-
-.form-groupp {
-    margin-bottom: 15px;
+@media screen and (min-width: 769px), print {
+    .column.is-6, .column.is-6-tablet {
+        flex: none;
+        width: 50%;
+    }
+}
+.login-wrapper .hero.is-login {
+    position: relative;
+    background: #5596e6;
+    background: linear-gradient(180deg, #9cc2f0, #5596e6);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+}
+.login-wrapper .hero.form-hero .logo-wrap .wrap-inner {
+    height: 86px;
+    width: 86px;
+    border-radius: 50%;
+    background: #5596e6;
+    background: linear-gradient(180deg, #9cc2f0, #5596e6);
+    background-size: 400% 400%;
+    animation: gradientShift 45s ease infinite;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-wrapper .form-wrapper .login-form .field .control {
+    position: relative;
+}
+.login-wrapper .form-wrapper .login-form .field .control .input {
+    height: 40px;
+    padding-left: 40px;
+}
+.input {
+    font-size: .9rem;
+    height: 36px;
+    border-radius: .65rem;
+    transition: all .3s;
+}
+
+.input, .textarea {
+    box-shadow: none !important;
+  
+
+}
+.input div {
+    margin-bottom: 10px;
+}
+.login-wrapper .form-wrapper .avatar .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1ce589;
+}
+.hero.is-fullheight {
+    min-height: 100vh;
+}
+.hero {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
 
-.form-check-input {
-    margin-right: 5px;
-}
-.card-header {
+
+.hero.is-halfheight .hero-body, .hero.is-fullheight .hero-body, .hero.is-fullheight-with-navbar .hero-body {
+    align-items: center;
     display: flex;
+}
+@media screen and (min-width: 769px), print {
+    .hero-body {
+        padding: 3rem 3rem;
+    }
+}
+.hero-body {
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 3rem 1.5rem;
+}
+
+
+.columns.is-gapless>.column {
+    margin: 0;
+    padding: 0 !important;
+}
+@media screen and (min-width: 769px), print {
+    .column.is-6, .column.is-6-tablet {
+        flex: none;
+        width: 50%;
+    }
+}
+.column {
+    display: block;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: .75rem;
+}
+
+
+.login-wrapper .hero.form-hero {
+    position: relative;
+}
+.hero.is-fullheight {
+    min-height: 100vh;
+}
+.hero {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.login-wrapper .hero.form-hero .logo-wrap {
+    position: absolute;
+    top: calc(50% - 50px);
+    left: -50px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(32deg);
+}
+
+
+.hero.is-halfheight .hero-body, .hero.is-fullheight .hero-body, .hero.is-fullheight-with-navbar .hero-body {
+    align-items: center;
+    display: flex;
+}
+@media screen and (min-width: 769px), print {
+    .hero-body {
+        padding: 3rem 3rem;
+    }
+}
+.hero-body {
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 3rem 1.5rem;
+}
+
+.login-wrapper .form-wrapper {
+    max-width: 540px;
+    min-width: 380px;
+    margin: 0 auto;
+}
+
+.login-wrapper .form-wrapper .avatar {
+    position: relative;
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    border: 1.4px solid #cecece;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.field:not(:last-child) {
+    margin-bottom: .75rem;
+}
+
+.login-wrapper .form-wrapper .login-form .field .control {
+    position: relative;
+}
+
+.control {
+    box-sizing: border-box;
+    clear: both;
+    font-size: 1rem;
+    position: relative;
+    text-align: inherit;
+}
+
+
+.login-wrapper .form-wrapper .login-form .field .control .input {
+    height: 40px;
+    padding-left: 40px;
+}
+
+.input {
+    font-size: .9rem;
+    height: 36px;
+    border-radius: .65rem;
+    transition: all .3s;
+}
+.input, .textarea {
+    box-shadow: none !important;
+}
+.textarea, .input {
+    box-shadow: inset 0 .0625em .125em rgba(10, 10, 10, .05);
+    max-width: 100%;
+    width: 100%;
+}
+.select select, .textarea, .input {
+    background-color: #fff;
+    border-color: #dbdbdb;
+    border-radius: 4px;
+    color: #363636;
+}
+
+
+
+body, button, input, optgroup, select, textarea {
+    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+button, input, select, textarea {
+    margin: 0;
+    margin-top: 4px;
+}
+
+.login-wrapper .form-wrapper .login-form .field .control .input-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
-.card-header img{
-    width: 100px; /* Set your desired width */
-    height: auto; /* Maintain aspect ratio */
-    max-height: 100px; /* Set your desired max height */
 
+.login-wrapper .form-wrapper .forgot-password {
+    padding: 1.5rem !important;
+}
+.section {
+    padding: 3rem 1.5rem;
+}
+textarea, .input {
+    box-shadow: inset 0 .0625em .125em rgba(10, 10, 10, .05);
+    max-width: 100%;
+    width: 100%;
+}
+.select select, .textarea, .input {
+    background-color: #fff;
+    border-color: #c41f1f;
+    border-radius: 4px;
+    color: #363636;
+}
+.pagination-previous, .pagination-next, .pagination-link, .pagination-ellipsis, .file-cta, .file-name, .select select, .textarea, .input, .button {
+
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+    box-shadow: none;
+    display: inline-flex;
+    font-size: 1rem;
+    height: 2.5em;
+    justify-content: flex-start;
+    line-height: 1.5;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: calc(0.75em - 1px);
+    padding-right: calc(0.75em - 1px);
+    padding-top: calc(0.5em - 1px);
+    position: relative;
+    vertical-align: top;
+}
+
+.login-wrapper .form-wrapper .login-form .field .control .input-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.login-wrapper .form-wrapper .login-form .field .control button, .login-wrapper .form-wrapper .login-form .field .control .button {
+    height: 46px;
+    font-size: .95rem;
+}
+.button.is-solid.primary-button {
+    background: #3d70b2;
+    border-color: #3d70b2;
+    color: #fff;
+}
+.button.is-rounded {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+.button.is-rounded {
+    border-radius: 9999px;
+    padding-left: calc(1em + 0.25em);
+    padding-right: calc(1em + 0.25em);
+}
+.button.is-fullwidth {
+    display: flex;
+    width: 100%;
+}
+button.button {
+    line-height: 0;
+}
+.button {
+    font-size: .8rem;
+    font-weight: 500;
+    padding: 18px 22px;
+    border-radius: .65rem;
+    transition: all .3s;
+}
+.button {
+    background-color: #fff;
+    border-color: #dbdbdb;
+    border-width: 1px;
+    color: #363636;
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: calc(0.5em - 1px);
+    text-align: center;
+    white-space: nowrap;
+}
+.login-wrapper .form-wrapper .avatar img {
+    display: block;
+    height: 94px;
+    width: 94px;
+    border-radius: 50%;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+img, video {
+    height: auto;
+    max-width: 100%;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.login-wrapper .hero.is-login .left-caption h2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 3.2rem;
+    color: #fcfcfc;
+    line-height: 1.3;
+    text-shadow: 4px 4px #3180e1, 8px 8px #3180e1;
+}
+.login-wrapper .hero.form-hero .logo-wrap .wrap-inner img {
+    display: block;
+    max-width: 54px;
 }

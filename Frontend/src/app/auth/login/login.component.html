@@ -1,73 +1,12 @@
-<!-- <div class="row mt-5">
-    <div class="col-6 m-auto">
-        <div class="card m-auto">
-            <div class="card-header">
-                <h3>Login</h3>
-            </div>
-            <div class="card-body">
-                <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
-                    <div class="form-group col-12">
-                        <label>Email</label>
-                        <input class="form-control" required #propname="ngModel" ngModel name="email"
-                            minlength="3"
-                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                            [ngClass]="{ 'isvalid': propname.valid && propname.touched }">
-                        <span class="error-block" *ngIf="!propname.valid && propname.touched">
-                            <span *ngIf="propname.errors?.['required']">
-                                Please provide an Email
-                            </span>
-                            <span *ngIf="propname.errors?.['pattern']">
-                                Please provide a valid email address
-                            </span>
-                        </span>
-                    </div>
+<!-- 
 
-                    <div class="form-group col-12 ">
-                        <label>Password</label>
-                        <input class="form-control" required type="password" ngModel name="password"
-                            #proppass="ngModel" [ngClass]="{ 'isvalid': proppass.valid && proppass.touched }">
-                        <span class="is-invalid" *ngIf="!proppass.valid && proppass.touched">
-                            <span class="invalid-feedback" *ngIf="proppass.errors?.['required']">
-                                Please provide a Password
-                            </span>
-                        </span>
-                    </div>
-
-                    <div class="form-groupp ">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Remember Me</label>
-                        </div>
-                        <div>
-                            <a routerLink="/resetpassword" class="float-right text-primary" >Forgot Password?</a>
-                        </div>
-                   
-                    </div>
-
-                    <div class="form-group col-12">
-                        <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary" >Login</button>
-                      
-                    </div>
-                </form>
-                <div class="text-center">
-                    <p>Don't have an account? <a routerLink="/register" class="text-primary font-weight-bold">Sign up</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
- -->
-
-
- <div class="row mt-5 main">
-    <div class="col-6 m-auto">
-      <div class="card m-auto">
+ <div class=" row">
+    <div class="col-md-6 order-md-2 mr-4">
+      <div class="card ">
         <div class="card-header">
        
           <h2>Login</h2>
-          <img src="../../assets/love_6939904 (5).png" class="d-inline-block align-top" alt="Connectopia Logo"  />
+          <img class="d-inline-block align-top"  />
         </div>
         <div class="card-body">
           <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
@@ -120,5 +59,105 @@
         </div>
       </div>
     </div>
+    <div class="col-md-6 order-md-1 mt-n2 bg-image-section"></div>
   </div>
-  
+   -->
+
+   <div class="login-wrapper columns is-gapless">
+    <!--Left Side (Desktop Only)-->
+    <div class="column is-6 is-hidden-mobile hero-banner">
+        <div class="hero is-fullheight is-login">
+            <div class="hero-body">
+                <div class="container">
+                    <div class="left-caption">
+                        <h2>Join an Exciting Social Experience.</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Right Side-->
+    <div class="column is-6">
+        <div class="hero form-hero is-fullheight">
+            <!--Logo-->
+            <div class="logo-wrap">
+                <div class="wrap-inner">
+                    <img src="../../../assets/friendkit-white.svg" alt="">
+                </div>
+            </div>
+            <!--Login Form-->
+            <div class="hero-body">
+                <div class="form-wrapper">
+                    <!--Avatar-->
+                    <div class="avatar">
+                        <div class="badge">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <img src="../../../assets/lovelogo.jfif" data-demo-src="assets/img/avatars/jenna.png" alt="">
+                    </div>
+                    <!--Form-->
+                    <div class="login-form">
+                      <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+                        <div class="field">
+                            <div class="control">
+                                <!-- <input class="input email-input" type="text" placeholder="jennadavis@gmail.com"> -->
+                                <div [ngClass]="{'has-danger': !propname.valid && propname.touched, 'has-success': propname.valid && propname.touched}">
+                
+                                  <input class=" form-control input email-input" required #propname="ngModel" type="text" ngModel name="email" placeholder="jennadavis@gmail.com"
+                                    minlength="3"
+                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                    [ngClass]="{ 'is-valid': propname.valid && propname.touched, 'is-invalid': !propname.valid && propname.touched }">
+                                  <div class="invalid-feedback" *ngIf="!propname.valid && propname.touched">
+                                    <span *ngIf="propname.errors?.['required']">
+                                      Please provide an Email
+                                    </span>
+                                    <span *ngIf="propname.errors?.['pattern']">
+                                      Please provide a valid email address
+                                    </span>
+                                  </div>
+                                <div class="input-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                       
+                            <div class="control">
+                            
+                                <!-- <input class="input password-input" type="password" placeholder="●●●●●●●"> -->
+                                <div  [ngClass]="{'has-danger': !proppass.valid && proppass.touched, 'has-success': proppass.valid && proppass.touched}">
+                               
+                                  <input class="form-control input password-input" required type="password" ngModel name="password"  placeholder="●●●●●●●"
+                                    #proppass="ngModel" [ngClass]="{  'is-invalid': !proppass.valid && proppass.touched }">
+                                  <div class="invalid-feedback" *ngIf="!proppass.valid && proppass.touched">
+                                    <span *ngIf="proppass.errors?.['required']">
+                                      Please provide a Password
+                                    </span>
+                                  </div>
+                                <div class="input-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button [disabled]="!loginForm.valid" type="submit" class="button is-solid primary-button raised is-rounded is-fullwidth">
+                                    Login
+                                </button>
+                           </div>
+                        </div>
+                         
+                    </div>
+                    <div class="section forgot-password">
+                        <div class="has-text-centered">
+                          <a routerLink="/resetpassword" class="float-right text-primary">Forgot Password?</a>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+   

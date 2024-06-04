@@ -19,20 +19,22 @@ import { Router } from '@angular/router';
 //   );
 // };
 
-// export const ErrorInterceptor: HttpInterceptorFn = (req, next)=> {
+// export const ErrorInterceptor: HttpInterceptorFn = (req, next):Observable<HttpEvent<unknown>>=> {
 //   const router = inject(Router);
 //   return next(req).pipe(
-//     catchError((error: HttpErrorResponse) => {
+//     catchError((error) => {
 //       console.log("Intercepting Request with Error", error);
-
-//       if (error.error=="Email Not Verified") {
-//         console.log("Error 401: Unauthorized", error.message);
-//         router.navigate(['/unauthorized404']);
-//       }else if(error.status === 0){
-//         router.navigate(['/servererror']);
-//       }
+//     if(error instanceof HttpErrorResponse ){
+//         if(error.error instanceof ErrorEvent){
+//             console.log("error event")
+//         }else{
+//          switch(error.status){
+//           case 401:
+//             console.log(error.statusText)
+//          }
+//         }
+//     }
      
-//       return throwError(() => error);
 //     })
 //   );
 // };

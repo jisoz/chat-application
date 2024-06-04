@@ -1,11 +1,19 @@
 .dropdown-menu a{
     cursor: pointer;
 }
+.dropdown-menu {
+    margin-left: -95px;
+    margin-top: 20px;
+}
 
+.dropdown-toggle {
+    cursor: pointer;
+  
+}
 .dropdown img{
     width: 50px;
     border-radius: 50%;
-    margin-right: 2px;
+    margin-right: 16px;
 }
 
 .loginbtn .log1{
