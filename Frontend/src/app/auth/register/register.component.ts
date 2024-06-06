@@ -16,6 +16,9 @@ export class RegisterComponent implements OnInit {
   countries: any[] = [];
   cities:any[]=[];
 
+  currentStep: number = 0;
+  currentPanel: number = 0;
+
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private alertify: AlertifyServiceService ,
@@ -79,6 +82,27 @@ export class RegisterComponent implements OnInit {
       )
     }
     
+  }
+
+
+
+  setStep(step: number) {
+    this.currentStep = step;
+    this.currentPanel = step / 25;
+  }
+
+  nextStep() {
+    if (this.currentPanel < 4) {
+      this.currentPanel++;
+      this.currentStep = this.currentPanel * 25;
+    }
+  }
+
+  prevStep() {
+    if (this.currentPanel > 0) {
+      this.currentPanel--;
+      this.currentStep = this.currentPanel * 25;
+    }
   }
 
   get fullName() {

@@ -97,6 +97,7 @@
 .hero.is-halfheight .hero-body, .hero.is-fullheight .hero-body, .hero.is-fullheight-with-navbar .hero-body {
     align-items: center;
     display: flex;
+    
 }
 @media screen and (min-width: 769px), print {
     .hero-body {
@@ -229,9 +230,9 @@
     width: 100%;
 }
 .select select, .textarea, .input {
-    background-color: #fff;
+    background-color: none;
     border-color: #dbdbdb;
-    border-radius: 4px;
+    border-radius: 20px;
     color: #363636;
 }
 
@@ -267,11 +268,11 @@ textarea, .input {
     max-width: 100%;
     width: 100%;
 }
-.select select, .textarea, .input {
-    background-color: #fff;
-    border-color: #c41f1f;
-    border-radius: 4px;
-    color: #363636;
+
+.section-forgotpassword{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .pagination-previous, .pagination-next, .pagination-link, .pagination-ellipsis, .file-cta, .file-name, .select select, .textarea, .input, .button {
 
@@ -308,9 +309,18 @@ textarea, .input {
     height: 46px;
     font-size: .95rem;
 }
-.button.is-solid.primary-button {
+.button.is-solid.primary-button:valid {
     background: #3d70b2;
     border-color: #3d70b2;
+    color: #fff;
+  
+}
+.button.is-solid.primary-button:valid:hover{
+    transform: translateY(-2px);
+}
+.button.is-solid.primary-button {
+    background: #76a4df;
+    border-color: #76a4df;
     color: #fff;
 }
 .button.is-rounded {
@@ -384,4 +394,8 @@ img {
 .login-wrapper .hero.form-hero .logo-wrap .wrap-inner img {
     display: block;
     max-width: 54px;
+}
+
+.rightside{
+    background-color:#F4F4F4
 }

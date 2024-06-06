@@ -85,3 +85,241 @@
     transform: translateY(-50%); /* Center vertically */
     color: #c41c92; /* Arrow color */
   }
+
+
+  .fake-nav {
+    height: 55px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3d70b2;
+}
+.main{
+  width: 100%;
+  height:80vh;
+  background-color:#F4F4F4
+}
+.process-bar-wrap {
+  padding: 30px 0 0 0;
+  
+}
+.process-bar {
+  height: 18px;
+  background: #fff;
+  border-radius: 100px;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.process-bar .progress-wrap {
+  position: relative;
+  margin: 0 12px;
+  width: calc(100% - 24px);
+  height: 6px;
+  border-radius: 100px;
+}
+
+.process-bar .progress-wrap .track {
+  background: #eaeaea;
+  width: 100%;
+}
+
+.process-bar .progress-wrap .bar {
+  background: #5596e6;
+  width: 0;
+  transition: width .4s;
+}
+.process-bar .progress-wrap .bar, .process-bar .progress-wrap .track  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 100px;
+}
+.process-bar .progress-wrap .dot.is-current {
+  border-color: #3d70b2;
+  box-shadow: 0 14px 26px -12px rgba(61, 112, 178, .42), 0 4px 23px 0px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(61, 112, 178, .2) !important;
+}
+.process-bar .progress-wrap .dot.is-first {
+  left: -19px;
+}
+ .process-bar .progress-wrap .dot {
+  position: absolute;
+  top: calc(50% - 19px);
+  height: 38px;
+  width: 38px;
+  background: #fff;
+  border-radius: 50%;
+  border: 1.4px solid #e8e8e8;
+  box-shadow: -1px 3px 10px 0 rgba(0, 0, 0, .06);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+.process-bar .progress-wrap .dot.is-second {
+  left: calc(25% - 19px);
+}
+
+.process-bar .progress-wrap .dot.is-third {
+  left: calc(50% - 19px);
+}
+
+.process-bar .progress-wrap .dot.is-fourth {
+  left: calc(75% - 19px);
+}
+
+ .process-bar .progress-wrap .dot.is-fifth {
+  right: -19px;
+}
+
+.process-bar .progress-wrap .dot.is-active {
+  border-color: #5596e6;
+  box-shadow: 0 14px 26px -12px rgba(85, 150, 230, .42), 0 4px 23px 0px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(85, 150, 230, .2) !important;
+}
+
+
+
+@media screen and (min-width: 769px), print {
+  .columns:not(.is-desktop) {
+      display: flex;
+  }
+}
+.columns:last-child {
+  margin-bottom: -0.75rem;
+}
+.mt-4 {
+  margin-top: 1rem !important;
+}
+.columns {
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  margin-top: -0.75rem;
+}
+
+@media screen and (min-width: 769px), print {
+  .column.is-4, .column.is-4-tablet {
+      flex: none;
+      width: 33.33333337%;
+  }
+}
+
+.column {
+  
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: .75rem;
+  position: absolute;
+  left: 34%;
+}
+
+.account-type {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+}
+
+.type-image {
+  position: relative;
+}
+
+.account-type .type-image .type-illustration {
+  position: absolute;
+  top: -15%;
+  left: 0;
+  transform: scale(1.25);
+}
+
+.account-type .type-image  img{
+  height: auto;
+  max-width: 80%;
+}
+
+.account-type .type-image .type-bg {
+  margin-top: -5%;
+}
+.dark-image {
+  display: none !important;
+}
+.account-type h3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600 !important;
+  font-size: 1rem;
+  padding: .5rem 0;
+}
+
+.account-type p {
+  color: #a2a5b9;
+  font-size: .9rem;
+}
+
+
+.account-type .button {
+  margin-top: 20px;
+  border-width: 1.4px;
+  min-height: 42px;
+  color: #999;
+}
+.button.is-fullwidth {
+    display: flex;
+    width: 100%;
+}
+.button {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 18px 22px;
+  border-radius: .65rem;
+  transition: all .3s;
+}
+.button.is-solid.primary-button:valid {
+  background: #3d70b2;
+  border-color: #3d70b2;
+  color: #fff;
+
+}
+.button.is-solid.primary-button:valid:hover{
+  transform: translateY(-2px);
+}
+.button.is-solid.primary-button {
+  background: #76a4df;
+  border-color: #76a4df;
+  color: #fff;
+}
+.button.is-rounded {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+.button.is-rounded {
+  border-radius: 9999px;
+  padding-left: calc(1em + 0.25em);
+  padding-right: calc(1em + 0.25em);
+}
+.button {
+  background-color: #fff;
+    border-color: #dbdbdb;
+    border-width: 1px;
+    color: #363636;
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: calc(0.5em - 1px);
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400 !important;
+  font-size: 1.2rem;
+}

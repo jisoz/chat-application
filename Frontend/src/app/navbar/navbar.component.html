@@ -1,36 +1,14 @@
-<!-- <nav class="navbar navbar-light bg-dark top-fixed" style="z-index: 10000;">
-    <a class="navbar-brand text-white"><img  alt=""> <span  class="ml-2">My-App</span></a>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link" routerLink="/members">Matches</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/lists">Lists</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/messages">Messages</a></li>
-      </ul>
-  </div>
-    <form class="form-inline">
-      
-      <div *ngIf="!loggedin()">
-        <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/login" >login</button>
-       <button class="btn btn-outline-success my-2 my-sm-0 ml-2"  routerLink="/register">Register</button>
-      </div>
 
-      <div *ngIf="loggedin()"  class="dropdown mr-5" dropdown>
-        <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)="false">
-            Welcome {{loggedinUser}}
-        </a>
-        <div class="dropdown-menu" *dropdownMenu>
-            <a (click)='onLogout()'  class="dropdown-item">
-              <i class="fas fa-sign-out-alt"></i> Logout</a>
-        </div>
-      </div>
-    </form>
-  </nav> -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary top-fixed" style="z-index: 10000;">
-    <a class="navbar-brand text-white" href="#">
+  <nav class="navbar navbar-expand-lg navbar-light top-fixed" style="z-index: 10000;">
+    <a class="navbar-item" href="/">
+      <img class="light-image" src="../../assets/lovelogo.jfif" alt="">
+
+  </a>
    
-      <span class="ml-8 display-8 font-weight-bold" style="line-height: 20px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 25px; margin-left: 3px;">Connectopia</span>
+   
+      <span class="ml-8 display-8 font-weight-bold " style="line-height: 20px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 25px; margin-left: 3px;">Connectopia</span>
       
-    </a>
+ 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
