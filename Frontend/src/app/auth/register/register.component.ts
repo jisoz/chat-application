@@ -15,9 +15,12 @@ export class RegisterComponent implements OnInit {
   userSubmitted!: boolean;
   countries: any[] = [];
   cities:any[]=[];
-
+  uploadedImageUrl: string | ArrayBuffer | null = null;
+  response!:boolean;
+  errorMessage: string | null = null;
   currentStep: number = 0;
   currentPanel: number = 0;
+  loadingCities: boolean = false;
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
@@ -27,15 +30,19 @@ export class RegisterComponent implements OnInit {
   ) { }
     
   ngOnInit(): void {
+    this.response=false;
     this.createRegisterationForm();
     this.countryService.getCountries().subscribe(data => {
       this.countries = data;
     });
 
+   
     this.country.valueChanges.subscribe(countryIso => {
       if (countryIso) {
+        this.loadingCities = true; 
         this.countryService.getCities(countryIso).subscribe(data => {
           this.cities = data;
+          this.loadingCities = false
         });
       }
     });
@@ -51,7 +58,8 @@ export class RegisterComponent implements OnInit {
       gender:[null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.pattern(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[$#@]).{8,}$/)]],
-      confirmPassword: [null, Validators.required]
+      confirmPassword: [null, Validators.required],
+      file: [null, Validators.required]
 
 
     }, { validator: this.passwordMatchValidator })
@@ -67,20 +75,88 @@ export class RegisterComponent implements OnInit {
     return password.value === confirmPassword.value ? null : { mismatch: true };
   }
 
-  onSubmit(){
+
+  triggerFileInput() {
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    fileInput.value = '';
+    fileInput.click();
+  }
+
+  
+  onFileSelect(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+
+      
+      const maxSizeInMB = 3;
+      const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
+      if (file.size > maxSizeInBytes) {
+        this.errorMessage = `File size exceeds ${maxSizeInMB}MB. Please select a smaller file.`;
+        this.uploadedImageUrl = null;
+        this.registerationForm.get('file')?.setValue(null)
+        
+        return;
+      }
+
+      this.errorMessage = null;
+      this.registerationForm.get('file')?.setValue(file);
    
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.uploadedImageUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  isCurrentPanelValid(): boolean {
+    switch (this.currentPanel) {
+      case 1:
+        return this.fullName.valid && this.knownAs.valid && this.dateOfBirth.valid &&
+               this.city.valid && this.country.valid && this.gender.valid;
+      case 2:
+         return this.file.valid
+      default:
+        return false;
+    }
+  }
+
+  onSubmit(){
+    const formData = new FormData();
+
+    // Append form fields to FormData
+    for (const key in this.registerationForm.value) {
+      if (this.registerationForm.value.hasOwnProperty(key)) {
+        formData.append(key, this.registerationForm.value[key]);
+      }
+    }
+
+    // Append the file to FormData
+    const file = this.registerationForm.get('file')?.value;
+    if (file) {
+      formData.append('file', file);
+    } else {
+      console.error('File is not available');
+      return;
+    }
+
     this.userSubmitted = true;
     if (this.registerationForm.valid) {
-      this.authService.signUp(this.registerationForm.value).subscribe(
+      this.authService.signUp(formData).subscribe(
         res=>{
         //  this.alertify.success("User Registred");
          this.alertify.success("An Email has been sent to you to confirm your registration plz check to login ");
+         this.response=true
+        this.setStep(100)
       
         },err=>{
           this.alertify.error(err?.error.message);
         }
       )
     }
+  
     
   }
 
@@ -137,4 +213,7 @@ get knownAs(){
   return this.registerationForm.get('knownAs') as FormControl;
 }
 
+get file() {
+  return this.registerationForm.get('file') as FormControl;
+}
 }

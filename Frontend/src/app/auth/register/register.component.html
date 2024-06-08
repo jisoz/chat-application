@@ -194,7 +194,7 @@
   </div>
   
   <div class="panel text-center mt-4" *ngIf="currentPanel === 0" >
-    <p>Find Your soulmate Now By Registering with Connectopia</p>
+    <p>Find Your soulmate Now</p>
     
     <!-- <div class="columns mt-4 text-center"> -->
       <div class="column is-4">
@@ -208,7 +208,7 @@
               <p>
                   Create a Personal account to be able to do some awesome things.
               </p>
-              <button class="button is-solid primary-button raised is-rounded is-fullwidth" data-step="step-dot-2">
+              <button class="button is-solid primary-button raised is-rounded is-fullwidth" (click)="setStep(25)">
                   Continue
               </button>
           </div>
@@ -222,17 +222,184 @@
   <!-- </div> -->
    
   </div>
-  <div class="panel" *ngIf="currentPanel === 1" >
-  2
+  <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()">
+  <div class="panel mt-3" *ngIf="currentPanel === 1" >
+  
+    <p  class=" text-center">Tell us more about you </p>
+    <div class="form-panel">
+      <div class="field-row">
+        <div class="radios mb-2">
+     
+          <label class="form-check-label mr-3 ">
+            <input type="radio" formControlName="gender" value="male" class="form-check-input" name="gender"> <span>Male</span>
+          </label>
+          <label class="form-check-label">
+            <input type="radio" formControlName="gender" value="female" class="form-check-input"  name="gender"> <span>Female</span>
+          </label>
+        </div>
+      </div>
+     <div class="field-row">
+      <div class="field">
+        <label for="name" class="form-label">FullName</label>
+        <input type="text" class="form-control" formControlName="fullName" [ngClass]="{ 'is-valid': fullName.valid && fullName.touched }">
+        <span *ngIf="fullName.hasError('minlength') && (fullName.touched || userSubmitted)" class="invalid-feedback">Name must be at least 5 characters long</span>
+      </div>
+      <div class="field">
+        <label for="knownAs" class="form-label">Known As</label>
+        <input type="text" class="form-control " formControlName="knownAs"  [ngClass]="{ 'is-valid': knownAs.valid && knownAs.touched }">
+        <span *ngIf="!knownAs.valid && (knownAs.touched || knownAs)" class="invalid-feedback">
+          <span *ngIf="knownAs.hasError('required')">Please provide knownAs</span>
+          </span>
+     
+      </div>
+      </div>
+      <div class="field-row">
+      <div class="field">
+        <label for="country" class="form-label">Country</label>
+        <div class="select-container">
+          <select class="form-control" formControlName="country" [ngClass]="{'is-invalid': !registerationForm.controls['country'].valid && (registerationForm.controls['country'].touched || userSubmitted) }">
+            <option value="">Select a country</option>
+            <option *ngFor="let country of countries" [value]="country.iso2">{{ country.name }}</option>
+          </select>
+        </div>
+        <span *ngIf="!registerationForm.controls['country'].valid && (registerationForm.controls['country'].touched || userSubmitted)" class="invalid-feedback">
+          <span *ngIf="registerationForm.controls['country'].hasError('required')">Please provide country</span>
+        </span>
+      </div>
+      <div class="field">
+        <label for="city" class="form-label">City</label>
+        <div class="select-container">
+          <select class="form-control" formControlName="city" [ngClass]="{ 'is-valid': city.valid && city.touched }" >
+            <option value=""></option>
+            <option value="">Select a city</option>
+            <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+
+          </select>
+          <!-- <div class="spinner-container" *ngIf="loadingCities">
+            <p-progressSpinner ></p-progressSpinner>
+          </div> -->
+      
+        </div>
+     
+        <span *ngIf="!city.valid && (city.touched || city)" class="invalid-feedback">
+          <span *ngIf="city.hasError('required')">Please provide city</span>
+        </span>
+    </div>
+      </div>
+
+    <div class="field-rowcenter">
+    
+ <div class="field">
+  <label for="dateOfBirth" class="form-label">Date of Birth</label>
+  <input type="date" class="form-control" formControlName="dateOfBirth"  [ngClass]="{ 'is-valid': dateOfBirth.valid && dateOfBirth.touched }">
+  <span *ngIf="!dateOfBirth.valid && (dateOfBirth.touched || dateOfBirth)" class="invalid-feedback">
+    <span *ngIf="dateOfBirth.hasError('required')">Please provide dateOfBirth</span>
+    </span>
+ </div>
+   
+
+
+    </div>
+    <div class="buttons">
+      <button (click)="setStep(0)">back</button>
+      <button (click)="setStep(50)" [disabled]="!isCurrentPanelValid()">Next</button>
+    </div>
+
   </div>
-  <div class="panel" *ngIf="currentPanel === 2" >
-  3
+
+
+  </div>
+  <div class="panel text-center mt-3" *ngIf="currentPanel === 2" >
+  <p>Upload a profile picture</p>
+
+  <div class="form-panel text-center">
+    <div class="photo-upload">
+        <div class="preview">
+          <div class="upload-container">
+            <input type="file" id="fileInput" style="display: none;" (change)="onFileSelect($event)">
+            <a class="upload-button dz-clickable" (click)="triggerFileInput()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </a>
+          </div>
+          <img *ngIf="uploadedImageUrl; else genderImage" [src]="uploadedImageUrl" alt="Uploaded Image" id="upload-preview">
+          <ng-template #genderImage>
+            <img *ngIf="gender.value === 'male'" src="../../../assets/male.jpg" alt="Male Avatar" id="upload-preview">
+            <img *ngIf="gender.value === 'female'" src="../../../assets/women.jpg" alt="Female Avatar" id="upload-preview">
+          </ng-template>
+          
+        </div>
+        <div class="limitation">
+            <small>Only images with a size lower than 3MB are allowed.</small>
+           <small *ngIf="errorMessage" class="error-message">{{errorMessage}}</small>
+
+        </div>
+        <div class="buttons mt-4">
+          <button (click)="setStep(25)" >back</button>
+          <button (click)="setStep(75)" [disabled]="!isCurrentPanelValid()">Next</button>
+        </div>
+    </div>
+</div>
+
   </div>
   <div class="panel" *ngIf="currentPanel === 3" >
-  4
+    <p class="text-center mt-3">Secure your account </p>
+    <div class="form-panel mt-3">
+      <div class="fieldd">
+          <label>Email</label>
+          <div class="control">
+            <input type="text" formControlName="email" [ngClass]="{ 'is-valid': email.valid && email.touched }" placeholder="Enter your email address">
+            <span *ngIf="!email.valid && (email.touched || userSubmitted)" class="invalid-feedback">
+              <span *ngIf="email.hasError('required')">Please provide email id</span>
+              <span *ngIf="email.hasError('email')">Please provide valid email id</span>
+            </span>
+          </div>
+      </div>
+      <div class="fieldd">
+          <label>Password</label>
+          <div class="control">
+            <input type="password"  formControlName="password" [ngClass]="{ 'is-valid': password.valid && password.touched }" placeholder="Choose a Password">
+            <span *ngIf="!password.valid && (password.touched || userSubmitted)" class="invalid-feedback">
+              <span *ngIf="password.hasError('required')">Please provide password</span>
+              <span *ngIf="password.hasError('pattern')">Password should be at least 8 characters long and contain letters, numbers, and at least one of $#</span>
+            </span>
+          </div>
+      </div>
+      <div class="fieldd">
+          <label>Confirm Password</label>
+          <div class="control">
+            <input type="password"  formControlName="confirmPassword" [ngClass]="{
+              'is-invalid': confirmPassword.touched && registerationForm.hasError('mismatch'),
+              'is-valid': confirmPassword.valid && registerationForm.hasError('mismatch') !== true
+           }" placeholder="Repeat your password">
+          <div *ngIf="confirmPassword.touched && registerationForm.hasError('mismatch')" class="invalid-feedback">Passwords do not match</div>
+          </div>
+      </div>
+      <div class="buttons mt-4">
+        <button (click)="setStep(50)">back</button>
+        <button type="submit"  [disabled]="!this.registerationForm.valid" >Next</button>
+      </div>
   </div>
-  <div class="panel" *ngIf="currentPanel === 4" >
-   5
-  </div>
+
+
   
+  </div>
+  <div class="panel" *ngIf="currentPanel === 4 && response" >
+   <p class="text-center mt-3">You're all set. Ready?</p>
+   <div class="form-panel">
+    <img class="success-image" src="../../../assets/mailbox.svg" alt="">
+    <div class="success-text">
+        <h4>Congratz, you successfully created your account.</h4>
+        <p>
+            We just sent you a confirmation email. PLease confirm your account
+            within 24 hours.
+        </p>
+        <a id="signup-finish" class="button is-fullwidth">Let Me In</a>
+    </div>
+</div>
+
+  </div>
+  </form>
 </div>

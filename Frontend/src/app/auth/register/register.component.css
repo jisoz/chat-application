@@ -65,15 +65,15 @@
     border-radius: 0.25rem; /* Rounded corners */
     padding: 0.5rem 1rem; /* Padding inside the select box */
     background-color: none; /* Background color */
-    color: #1cc4a8; /* Text color */
+    color: #1c78c4; /* Text color */
     font-size: 1rem; /* Font size */
     transition: border-color 0.3s, box-shadow 0.3s; /* Transition effects */
   }
   
   .select-container select:focus {
-    border-color: #80bdff; /* Border color on focus */
+    border-color: #1c78c4; /* Border color on focus */
     outline: 0; /* Remove outline */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Box shadow on focus */
+    box-shadow: 0 0 0 0.2rem rgba(120, 171, 226, 0.25); /* Box shadow on focus */
   }
   
   .select-container:after {
@@ -83,7 +83,7 @@
     right: 10px; /* Position to the right */
     pointer-events: none; /* Prevent click events */
     transform: translateY(-50%); /* Center vertically */
-    color: #c41c92; /* Arrow color */
+    color: #1c78c4; /* Arrow color */
   }
 
 
@@ -323,3 +323,264 @@ p {
   font-weight: 400 !important;
   font-size: 1.2rem;
 }
+
+.form-panel {
+ width: 700px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 30px;
+  margin: auto;
+}
+.field-row {
+  display: flex;
+  justify-content: space-between;
+}
+.form-panel .field {
+  border: 1px solid #e8e8e8;
+  padding: 4px 8px 8px 8px;
+  border-radius: 6px;
+  background: #fcfcfc;
+  margin-bottom: 20px;
+  width: 300px;
+}
+.form-panel .fieldd {
+  border: 1px solid #e8e8e8;
+  padding: 4px 8px 8px 8px;
+  border-radius: 6px;
+  background: #fcfcfc;
+  margin-bottom: 20px;
+}
+
+.field:not(:last-child) {
+  margin-bottom: .75rem;
+}
+.fieldd:not(:last-child){
+  margin-bottom: .75rem;
+}
+
+
+.form-panel .field label {
+  text-transform: uppercase;
+  font-size: .7rem;
+  font-weight: 500;
+  color: #757a91;
+  padding-left: 8px;
+}
+.form-panel .fieldd label {
+  text-transform: uppercase;
+  font-size: .7rem;
+  font-weight: 500;
+  color: #757a91;
+  padding-left: 8px;
+}
+.field label {
+  font-size: .9rem;
+  font-weight: 500;
+  color: #393a4f;
+}
+.form-panel .fieldd .control input {
+  border: none;
+  height: 30px;
+  background: #fcfcfc;
+  width: 100%;
+}
+
+.input {
+  font-size: .9rem;
+  height: 36px;
+  border-radius: .65rem;
+  transition: all .3s;
+}
+.input, .textarea {
+  box-shadow: none !important;
+}
+.fieldd label {
+  font-size: .9rem;
+  font-weight: 500;
+  color: #393a4f;
+}
+
+.control {
+  box-sizing: border-box;
+  clear: both;
+  font-size: 1rem;
+  position: relative;
+  text-align: inherit;
+}
+
+
+.form-panel .field  input, .form-panel .field  select{
+  border: none;
+  height: 40px;
+  background: #fcfcfc;
+}
+
+
+.form-panel .field  input, .form-panel .fieldd  select{
+  border: none;
+  height: 40px;
+  background: #fcfcfc;
+}
+
+.form-panel .field  input:focus {
+  border: none;
+  outline: none; /* This line removes the border-like outline on focus */
+}
+.form-panel .fieldd  input:focus {
+  border: none;
+  outline: none; /* This line removes the border-like outline on focus */
+}
+
+.buttons{
+  display: flex;
+  justify-content:end ;
+  align-items: center;
+  
+}
+
+.buttons button{
+  margin-left: 4px;
+  border: none;
+  background-color: #1c78c4;
+  border-radius: 10px;
+  width: 90px;
+  padding: 10px;
+  color: white;
+}
+.buttons button:hover{
+  transform: translateY(-2px);
+  font-weight: bold;
+  background-color: #3d70b2;
+}
+.buttons button:disabled{
+  background-color: #76a4df;
+}
+.buttons button:disabled:hover{
+  background-color: #76a4df;
+  transform: none;
+  font-weight: normal;
+}
+.form-panel {
+  width: 50%;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 30px;
+}
+.photo-upload .preview {
+  position: relative;
+  height: 120px;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1.4px solid #cecece;
+  margin: 0 auto;
+}
+.photo-upload .preview .upload-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: #cecece;
+  transition: all .3s;
+}
+.photo-upload .preview .upload-button:hover {
+  
+  background: #23acc4;
+  cursor: pointer;
+ 
+}
+.photo-upload .preview .upload-button svg {
+  height: 14px;
+  width: 14px;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+
+.photo-upload .preview img {
+  display: block;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.photo-upload .limitation {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.spinner-container {
+  position: absolute;
+  right: 50%; /* Adjust this value based on your design */
+  top: 0;
+
+  display: flex;
+  align-items: center;
+}
+
+
+.form-panel .success-image {
+  display: block;
+  max-width: 120px;
+  margin: 0 auto;
+}
+
+.form-panel .success-text {
+  text-align: center;
+  margin: 12px auto;
+  max-width: 370px;
+}
+
+.form-panel .success-text h4 {
+
+  color: #393a4f;
+  font-size: 1.2rem;
+}
+
+.form-panel .success-text p {
+  font-size: .9rem;
+  color: #999;
+}
+
+.form-panel .success-text .button {
+  margin: 20px auto 0 auto;
+  max-width: 280px;
+  border: 1.4px solid #5596e6;
+  color: #5596e6;
+}
+.button.is-fullwidth {
+  display: flex;
+  width: 100%;
+}
+.button {
+  font-size: .8rem;
+  font-weight: 500;
+  padding: 18px 22px;
+  border-radius: .65rem;
+  transition: all .3s;
+}
+a {
+  color: #3f88e3;
+  transition: all .3s;
+}
+a {
+  color: #039be5;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+ .form-panel .success-text .button:hover {
+  border: 1.4px solid #fff;
+  color: #fff;
+  background-color: #1c78c4;
+}
+

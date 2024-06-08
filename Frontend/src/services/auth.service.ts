@@ -39,7 +39,8 @@ export class AuthService {
       map((response:any)=>{
         const user=response;
         if(user){
-          this.setcurrentuser(user);
+          // this.setcurrentuser(user);
+          return ;
         }
       }
       
