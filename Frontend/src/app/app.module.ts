@@ -38,6 +38,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import {PaginationModule} from 'ngx-bootstrap/pagination'
 import { loginGardGuard } from '../guards/login-gard.guard';
 import { TimeagoModule } from 'ngx-timeago';
+import { NotificationComponent } from './notification/notification.component';
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent , canActivate: [loginGardGuard] },
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
   {path: 'confirm-passwordreset', component: ConfirmpasswordComponent},
   {path: 'confirm-email', component: ConfirmemailComponent},
   {path: 'unauthorized404', component: UnauthorizedComponent},
-  {path:'servererror', component: ServererrorComponent}
+  {path:'servererror', component: ServererrorComponent},
+  // {path:'notification', component: NotificationComponent},
 
 
 ];
@@ -85,6 +87,7 @@ const appRoutes: Routes = [
     MemeberDetailComponent,
     MemeberEditComponent,
     PhotoEditorComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,7 +105,8 @@ const appRoutes: Routes = [
     NgxSpinnerModule,
     FileUploadModule,
     PaginationModule.forRoot(),
-    TimeagoModule.forRoot()
+    TimeagoModule.forRoot(),
+    
   ],
   providers: [AuthService, appConfig.providers ],
   bootstrap: [AppComponent]

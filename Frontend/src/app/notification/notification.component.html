@@ -1,0 +1,11 @@
+<!-- notification.component.html -->
+<div class="notification-icon">
+  <i class="bell icon"></i>
+  <span class="counter">{{ unreadCount }}</span>
+  <div class="notification-list">
+    <div *ngFor="let notification of notifications; let i = index">
+      <p>{{ notification }}</p>
+      <button (click)="markAsRead(i)">Mark as Read</button>
+    </div>
+  </div>
+</div>
